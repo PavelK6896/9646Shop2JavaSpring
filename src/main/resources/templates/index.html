@@ -1,22 +1,68 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>index</title>
 </head>
 <body>
 <h1>Hi!</h1>
+<h2 th:if="${hostname != null}" th:text="${hostname}"></h2>
+<a th:href="@{'/product/'}">product</a>
+<br/>
+<hr/>
+<!--///////////////////////-->
 
-<ul>
-    <li  th:text="${box1.color}" />
-    <li  th:text="${box2.color}" />
-</ul>
+<h1>Добавить новый продукт</h1>
+<form class="form" th:action="@{/product/}" method="POST">
 
-<h2 th:text="${hostname}"></h2>
+    <input type="text" name="id" placeholder="Введите id"/>
+    <input type="text" name="title" placeholder="Введите title"/>
+    <input class="cost" type="text" name="cost" placeholder="Введите cost"/>
+    <input type="submit"/>
 
+    <a
+            style="border: 1px solid #123"
+            type="button"
+            th:onclick="
+            'fetch(\'/product/ \' + document.querySelectorAll(\'input\')[0].value + \' \',{method: \'PUT\',headers: ' +
+            '{ \'Content-Type\': \'application/json\' },    body: JSON.stringify({'+
+            'id: document.querySelectorAll(\'input\')[0].value, '+
+            'title: document.querySelectorAll(\'input\')[1].value,'+
+              'cost:  document.querySelectorAll(\'input\')[2].value})  }); setTimeout(\'location.reload()\', 500);'"
+    >редактировать</a>
 
+</form>
+<br/>
+<hr/>
+<!--///////////////////////////////////-->
+
+<table th:if="${product != null}">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Имя</td>
+        <td>Балл</td>
+        <td>Опции</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${product}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.title}"></td>
+        <td th:text="${s.cost}"></td>
+        <td>
+            <a
+                    style="border: 1px solid #123"
+                    type="button"
+                    th:onclick="'fetch(\'/product/ '+ ${s.id} +'\', {method: \'DELETE\'}); setTimeout(\'location.reload()\', 500);'"
+            >Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
