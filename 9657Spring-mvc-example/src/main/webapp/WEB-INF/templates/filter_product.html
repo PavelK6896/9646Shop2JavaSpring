@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring MVC GeekApp</title>
+</head>
+
+<body>
+<h1>Все продукты</h1>
+
+
+<form th:action="@{/product/1}" method="GET">
+    <input type="text" name="min_price" placeholder="min_price"/>min_price
+    <input type="text" name="max_price" placeholder="max_price"/>max_price
+    <input type="submit"/>
+</form>
+
+<div style="display: flex;">
+    <form th:action="@{/product/1}" method="GET">
+        <input type="submit" value="start"/>
+    </form>
+
+    <div th:text="${page.getTotalPages()} + ' all page '"></div>
+    <div th:text="${page.getPageable().getPageNumber() + 1} + ' page '"></div>
+
+    <form th:action="@{/product/7}" method="GET">
+        <input type="submit" value="end"/>
+    </form>
+</div>
+
+
+<div th:each="s : ${product}" style="display: flex;">
+    <div th:text="${s.id} + ' / '"></div>
+    <div th:text="${s.name} + ' / '"></div>
+    <div th:text="${s.price} + ' / '"></div>
+</div>
+
+<br>
+<a th:href="@{/}">на Главную страницу</a>
+</body>
+</html>
