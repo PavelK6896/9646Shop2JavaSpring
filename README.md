@@ -1,3 +1,3 @@
 # 9646Shop2JavaSpring
 
-## just shop site
+## just shops example site
