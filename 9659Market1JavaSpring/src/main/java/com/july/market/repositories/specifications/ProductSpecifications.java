@@ -13,6 +13,8 @@ public class ProductSpecifications {
     }
 
     public static Specification<Product> titleEqualsThan(String title) {
-        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), title);
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), String.format("%%%s%%", title));
     }
+
+
 }
