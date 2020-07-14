@@ -10,11 +10,16 @@ import java.util.Map;
 @Getter
 public class ProductFilter {
     private Specification<Product> spec;
+    private Specification<Product> spec2;
     private StringBuilder filterDefinition;
 
     public ProductFilter(Map<String, String> map) {
         this.spec = Specification.where(null);
+        this.spec2 = Specification.where(null);
         this.filterDefinition = new StringBuilder();
+
+        System.out.println(map);
+
         if (map.containsKey("min_price") && !map.get("min_price").isEmpty()) {
             int minPrice = Integer.parseInt(map.get("min_price"));
             spec = spec.and(ProductSpecifications.priceGreaterOrEqualsThan(minPrice));
@@ -29,5 +34,22 @@ public class ProductFilter {
             spec = spec.and(ProductSpecifications.titleEqualsThan(map.get("name1")));
             filterDefinition.append("&name1=").append(map.get("name1"));
         }
+
+        if (map.containsKey("dairy") && !map.get("dairy").isEmpty()) {
+            spec2 = spec2.or(ProductSpecifications.categoryThan("dairy"));
+            filterDefinition.append("&dairy=").append(map.get("dairy"));
+        }
+
+        if (map.containsKey("meat") && !map.get("meat").isEmpty()) {
+            spec2 = spec2.or(ProductSpecifications.categoryThan("meat"));
+            filterDefinition.append("&meat=").append(map.get("meat"));
+        }
+
+        if (map.containsKey("vegetables") && !map.get("vegetables").isEmpty()) {
+            spec2 = spec2.or(ProductSpecifications.categoryThan("vegetables"));
+            filterDefinition.append("&vegetables=").append(map.get("vegetables"));
+        }
+        spec = spec.and(spec2);
+
     }
 }

@@ -29,6 +29,7 @@ public class ProductsController {
         Page<Product> products = productsService.findAll(productFilter.getSpec(), pageNumber);
         model.addAttribute("products", products);
         model.addAttribute("filterDef", productFilter.getFilterDefinition().toString());
+        model.addAttribute("categories", new String[]{"dairy", "meat", "vegetables"});
         return "all_products";
     }
 
