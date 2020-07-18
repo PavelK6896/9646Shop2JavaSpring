@@ -1,4 +1,4 @@
-package com.july.market.configs;
+package app.web.pavelk.july.market.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +12,9 @@ import java.util.Locale;
 
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
+
     @Bean
-    public LocaleResolver localeResolver() { // дефолт
+    public LocaleResolver localeResolver() { // дефолт язык
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
         sessionLocaleResolver.setDefaultLocale(new Locale("ru"));
         return sessionLocaleResolver;
@@ -25,9 +26,11 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() { // перехватчик
+    public LocaleChangeInterceptor localeChangeInterceptor() { // перехватчик для языка
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang"); // ищет слово
         return localeChangeInterceptor;
     }
+
+
 }

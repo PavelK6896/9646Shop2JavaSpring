@@ -1,4 +1,4 @@
-package com.july.market.controllers;
+package app.web.pavelk.july.market.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

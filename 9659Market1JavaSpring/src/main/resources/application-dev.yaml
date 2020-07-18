@@ -1,8 +1,7 @@
 server:
-  port: 8085
+  port: 8080
   servlet:
-    context-path: /market
-
+    context-path:
 spring:
   datasource:
     driver-class-name: org.h2.Driver
@@ -18,3 +17,10 @@ spring:
           use_jdbc_metadata_defaults: false
   thymeleaf:
     encoding: UTF-8
+    prefix: file:9659Market1JavaSpring/src/main/resources/templates/
+    cache: false
+  resources:
+    static-locations: file:9659Market1JavaSpring/src/main/resources/static/
+  jackson:
+    serialization:
+      indent_output: true
