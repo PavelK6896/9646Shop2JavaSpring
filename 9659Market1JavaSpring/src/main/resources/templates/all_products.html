@@ -57,6 +57,7 @@
             <td>Название</td>
             <td>Цена</td>
             <td>cat</td>
+            <td></td>
             <td>Операции</td>
         </tr>
         </thead>
@@ -67,6 +68,12 @@
             <td th:text="${p.title}"></td>
             <td th:text="${p.price}"></td>
             <td th:text="${p.categories}"></td>
+            <td>
+                <form ACTION="/basket/add" method="post">
+                    <input type="hidden" name="id" th:value="${p.id}">
+                    <input type="submit" value="В корзину">
+                </form>
+            </td>
             <td><a th:href="@{'/products/edit/' + ${p.id}}">Редактировать</a></td>
         </tr>
         </tbody>
