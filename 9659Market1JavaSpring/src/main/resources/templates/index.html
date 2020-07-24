@@ -16,6 +16,8 @@
     <div th:replace="~{navigation :: navigation(Home)}" />
 
     <h1>July Market</h1>
+    <div th:text="${@basket.getSize()}"></div>
+    <div th:text="${@basket.getSumPrice()}"></div>
 </div>
 </body>
 </html>

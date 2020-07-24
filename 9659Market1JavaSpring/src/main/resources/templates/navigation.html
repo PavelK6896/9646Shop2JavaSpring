@@ -26,14 +26,15 @@
                     <a class="nav-link" th:href="@{'/about'}" th:text="#{nav.about}"></a>
                 </li>
                 <li class="nav-item" th:classappend="${activeTab == 'Basket' ? 'active' : ''}">
-                    <a th:if="basket" class="nav-link" th:href="@{'/basket'}"
-                       th:text="#{nav.basket} + ' ' + ${param.get('basket') == null ? '' : param.basket}"></a>
+                    <a th:if="basket" class="nav-link" th:href="@{'/basket/1'}"
+                       th:text="#{nav.basket} + ' sum ' + ${param.get('sumProduct') == null ? '' : param.sumProduct} +
+                       ' size ' + ${param.get('sizeProduct') == null ? '' : param.sizeProduct} "></a>
                 </li>
 
                 <div class="dropdown" style="margin-left: 10px;">
                     <button class="btn btn-outline-settcondary dropdown-toggle"
                             th:text="#{nav.lang}" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" th:href="@{'/?lang=ru'}">РУС</a>
                         <a class="dropdown-item" th:href="@{'/?lang=en'}">ENG</a>

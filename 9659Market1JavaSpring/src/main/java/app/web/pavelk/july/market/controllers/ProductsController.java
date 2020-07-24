@@ -50,9 +50,6 @@ public class ProductsController {
         return "all_products";
     }
 
-
-
-
     @GetMapping("/add")
     public String showAddForm() {
         return "add_product_form";

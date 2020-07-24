@@ -16,7 +16,7 @@
     <div th:replace="~{navigation :: navigation(Home)}"/>
     <h2>Basket</h2>
 
-    <div th:each="b : ${basket}">
+    <div th:each="b : ${mapProduct}">
         <span th:text="${b.getKey()}"></span>
         <span th:text="${b.getValue()}"></span>
     </div>
