@@ -70,6 +70,7 @@ public class BasketController {
         redirectAttributes.addAttribute("sizeProduct", basket.getSize());
         redirectAttributes.addAttribute("sumProduct", basket.getSumPrice());
 
+
         return "redirect:" + components.getPath();
     }
 
